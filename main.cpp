@@ -4,7 +4,7 @@ int main()
 {
 
 	ball.setFillColor(sf::Color::Blue);
-	ball.setPosition(WIDTH / 2, HEIGHT / 2);
+	ball.setPosition(WIDTH / 4, HEIGHT / 2);
 	ball.setOrigin(ballRadius, ballRadius);
 
 	board.setPosition(boardPosX, boardPosY);
@@ -33,41 +33,48 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
 
-			if (event.type == sf::Event::KeyPressed)
-			{
-				if (event.key.code == sf::Keyboard::Up)
+			//if (event.type == sf::Event::KeyPressed)
+			//{
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 				{
 					sf::Vector2f pos = rightPlayer.getPosition();
 					pos.y = std::max(0.f, pos.y - 10);
 					rightPlayer.setPosition(pos);
 				}
-				if (event.key.code == sf::Keyboard::Down)
+				//if (event.key.code == sf::Keyboard::Down)
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 				{
 					sf::Vector2f pos = rightPlayer.getPosition();
 					pos.y = std::min(WIN_HEIGHT - raquetHeight , pos.y + 10);
 					rightPlayer.setPosition(pos);
 				}
-			}
+			//}
 
 				// left player move
-			if (event.type == sf::Event::KeyPressed)
-			{
-				if (event.key.code == sf::Keyboard::W)
+			//if (event.type == sf::Event::KeyPressed)
+			//{
+				//if (event.key.code == sf::Keyboard::W)
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 				{
 					sf::Vector2f pos = leftPlayer.getPosition();
 					pos.y = std::max(0.f, pos.y - 10);
 					leftPlayer.setPosition(pos);
 				}
-				if (event.key.code == sf::Keyboard::Z)
+				//if (event.key.code == sf::Keyboard::Z)
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 				{
 					sf::Vector2f pos = leftPlayer.getPosition();
 					pos.y = std::min(WIN_HEIGHT - raquetHeight , pos.y + 10);
 					leftPlayer.setPosition(pos);
 				}
-			}
+			//}
         }
 
 		usleep(TIME_FRESH);
+
+		ball.move(ballDirection.x * ballVitesse, ballDirection.y *ballVitesse);
+		if (ball.getPosition().y <= boardPosY || ball.getPosition().y + ballRadius >= boardPosY + HEIGHT)
+    		ballDirection.y *= -1;
 
         window.clear(sf::Color::Black);
         window.draw(board);

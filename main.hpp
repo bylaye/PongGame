@@ -23,8 +23,10 @@ sf::RenderWindow window(sf::VideoMode({WIN_WIDTH, WIN_HEIGHT}), WIN_TITLE);
 sf::RectangleShape board({WIDTH, HEIGHT});
 const int lineBoard = 5;
 sf::RectangleShape boardLineTop({WIDTH, boardPosY});
-float ballRadius = WIDTH / 20;
+float ballRadius = WIDTH / 30;
 sf::CircleShape ball(ballRadius);
+sf::Vector2f ballDirection = {0.4f, 0.7f};
+float ballVitesse = 6.f;
 
 const float raquetWidth = WIDTH / 30;
 const float raquetHeight = HEIGHT / 5;
