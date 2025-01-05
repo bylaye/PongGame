@@ -21,6 +21,8 @@ const float boardPosY = (WIN_HEIGHT - HEIGHT) / 2;
 sf::RenderWindow window(sf::VideoMode({WIN_WIDTH, WIN_HEIGHT}), WIN_TITLE);
 
 sf::RectangleShape board({WIDTH, HEIGHT});
+const int lineBoard = 5;
+sf::RectangleShape boardLineTop({WIDTH, boardPosY});
 float ballRadius = WIDTH / 20;
 sf::CircleShape ball(ballRadius);
 
